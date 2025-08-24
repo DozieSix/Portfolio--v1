@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Functions Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+<style type="text/css" id="dcoder_stylesheet">/* ===== BASE STYLES ===== */
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --light-gray: #f8f9fa;
+  --medium-gray: #e9ecef;
+  --dark-gray: #495057;
+  --text-color: #333;
+  --code-bg: #f7f7f7;
+  --border-color: #ddd;
+  --highlight-color: #f1c40f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  display: flex;
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+/* ===== NAVIGATION ===== */
+#navbar {
+  min-width: 290px;
+  width: 300px;
+  height: 100vh;
+  border-right: 3px solid var(--border-color);
+  position: fixed;
+  overflow-y: auto;
+  background-color: var(--light-gray);
+  transition: all 0.3s ease;
+}
+
+#navbar header {
+  font-size: 1.8rem;
+  font-weight: 600;
+  padding: 20px;
+  text-align: center;
+  color: var(--primary-color);
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--medium-gray);
+}
+
+#navbar ul {
+  list-style: none;
+  padding: 0;
+}
+
+#navbar li {
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.nav-link {
+  display: block;
+  padding: 12px 25px;
+  text-decoration: none;
+  color: var(--dark-gray);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.nav-link:hover {
+  background-color: var(--medium-gray);
+  color: var(--primary-color);
+  padding-left: 30px;
+}
+
+.nav-link::before {
+  content: "→";
+  position: absolute;
+  left: 10px;
+  color: var(--secondary-color);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover::before {
+  opacity: 1;
+  left: 15px;
+}
+
+/* ===== MAIN CONTENT ===== */
+#main-doc {
+  margin-left: 310px;
+  padding: 40px;
+  max-width: 1200px;
+}
+
+.main-section {
+  margin-bottom: 50px;
+  scroll-margin-top: 20px;
+}
+
+.main-section header {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--secondary-color);
+  position: relative;
+}
+
+.main-section header::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100px;
+  height: 2px;
+  background-color: var(--highlight-color);
+}
+
+.main-section article {
+  margin-left: 20px;
+}
+
+.main-section p {
+  margin-bottom: 20px;
+  font-size: 1.05rem;
+}
+
+.main-section ul, 
+.main-section ol {
+  margin: 20px 0 20px 50px;
+}
+
+.main-section li {
+  margin-bottom: 12px;
+  position: relative;
+  padding-left: 15px;
+}
+
+.main-section li::before {
+  content: "•";
+  color: var(--secondary-color);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+/* ===== CODE BLOCKS ===== */
+code {
+  display: block;
+  background-color: var(--code-bg);
+  padding: 18px;
+  margin: 20px 0;
+  border-radius: 6px;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  color: var(--text-color);
+  border-left: 4px solid var(--secondary-color);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+pre {
+  margin: 20px 0;
+  position: relative;
+}
+
+pre::before {
+  content: attr(data-language);
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 2px 8px;
+  font-size: 0.8rem;
+  border-bottom-left-radius: 4px;
+}
+
+/* ===== LINKS & INTERACTIVE ELEMENTS ===== */
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 900px) {
+  #navbar {
+    width: 250px;
+    min-width: 250px;
+  }
+  
+  #main-doc {
+    margin-left: 260px;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+
+  #navbar {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    position: relative;
+    border-right: none;
+    border-bottom: 3px solid var(--border-color);
+  }
+
+  #main-doc {
+    margin-left: 0;
+    padding: 25px;
+  }
+
+  .main-section header {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #main-doc {
+    padding: 20px 15px;
+  }
+  
+  .main-section article {
+    margin-left: 10px;
+  }
+  
+  code {
+    padding: 15px;
+    font-size: 0.85rem;
+  }
+}</style></head>
+<body>
+    <nav id="navbar">
+        <header>JS Functions</header>
+        <ul>
+            <li><a class="nav-link" href="#Introduction">Introduction</a></li>
+            <li><a class="nav-link" href="#Function_Declaration">Function Declaration</a></li>
+            <li><a class="nav-link" href="#Function_Expression">Function Expression</a></li>
+            <li><a class="nav-link" href="#Arrow_Functions">Arrow Functions</a></li>
+            <li><a class="nav-link" href="#Parameters_vs_Arguments">Parameters vs Arguments</a></li>
+            <li><a class="nav-link" href="#Return_Values">Return Values</a></li>
+            <li><a class="nav-link" href="#Scope_and_Closures">Scope and Closures</a></li>
+            <li><a class="nav-link" href="#Higher-Order_Functions">Higher-Order Functions</a></li>
+            <li><a class="nav-link" href="#IIFEs">IIFEs</a></li>
+            <li><a class="nav-link" href="#Reference">Reference</a></li>
+        </ul>
+    </nav>
+
+    <main id="main-doc">
+        <section class="main-section" id="Introduction">
+            <header>Introduction</header>
+            <article>
+                <p>Functions are one of the fundamental building blocks in JavaScript. A function is a reusable set of statements that performs a task or calculates a value.</p>
+                <p>Functions help with:</p>
+                <ul>
+                    <li>Code reusability</li>
+                    <li>Modularity</li>
+                    <li>Abstraction</li>
+                    <li>Organization</li>
+                </ul>
+                <p>In JavaScript, functions are first-class objects, meaning they can be:</p>
+                <ul>
+                    <li>Assigned to variables</li>
+                    <li>Passed as arguments to other functions</li>
+                    <li>Returned from other functions</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="main-section" id="Function_Declaration">
+            <header>Function Declaration</header>
+            <article>
+                <p>A function declaration defines a named function using the <code>function</code> keyword:</p>
+                <pre><code>function greet(name) {
+    return `Hello, ${name}!`;
+}</code></pre>
+                <p>Key characteristics:</p>
+                <ul>
+                    <li>Hoisted to the top of their scope</li>
+                    <li>Can be called before they're defined</li>
+                    <li>Must have a name</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="main-section" id="Function_Expression">
+            <header>Function Expression</header>
+            <article>
+                <p>A function expression defines a function as part of a larger expression, typically by assigning it to a variable:</p>
+                <pre><code>const greet = function(name) {
+    return `Hello, ${name}!`;
+};</code></pre>
+                <p>Key differences from declarations:</p>
+                <ul>
+                    <li>Not hoisted</li>
+                    <li>Can be anonymous or named</li>
+                    <li>Created when execution reaches them</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="main-section" id="Arrow_Functions">
+            <header>Arrow Functions</header>
+            <article>
+                <p>Arrow functions provide a concise syntax for writing functions, introduced in ES6:</p>
+                <pre><code>const greet = (name) =&gt; `Hello, ${name}!`;</code></pre>
+                <p>Key features:</p>
+                <ul>
+                    <li>Shorter syntax</li>
+                    <li>No own <code>this</code> binding (inherits from parent scope)</li>
+                    <li>Can't be used as constructors</li>
+                    <li>No <code>arguments</code> object</li>
+                </ul>
+                <p>For multi-line functions, use curly braces:</p>
+                <pre><code>const sum = (a, b) =&gt; {
+    const result = a + b;
+    return result;
+};</code></pre>
+            </article>
+        </section>
+
+        <section class="main-section" id="Parameters_vs_Arguments">
+            <header>Parameters vs Arguments</header>
+            <article>
+                <p><strong>Parameters</strong> are variables listed in the function's definition. <strong>Arguments</strong> are the actual values passed to the function.</p>
+                <pre><code>function multiply(a, b) {  // a and b are parameters
+    return a * b;
+}
+multiply(3, 4);  // 3 and 4 are arguments</code></pre>
+                <p>JavaScript is flexible with arguments:</p>
+                <ul>
+                    <li>You can pass fewer arguments than parameters (missing parameters get <code>undefined</code>)</li>
+                    <li>You can pass more arguments than parameters (excess arguments can be accessed via <code>arguments</code> object)</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="main-section" id="Return_Values">
+            <header>Return Values</header>
+            <article>
+                <p>Functions can return values using the <code>return</code> statement:</p>
+                <pre><code>function square(x) {
+    return x * x;
+}</code></pre>
+                <p>If no <code>return</code> is specified, the function returns <code>undefined</code>.</p>
+                <p>The <code>return</code> statement immediately exits the function:</p>
+                <pre><code>function checkAge(age) {
+    if (age &lt; 0) return "Invalid age";
+    if (age &lt; 18) return "Minor";
+    return "Adult";
+}</code></pre>
+            </article>
+        </section>
+
+        <section class="main-section" id="Scope_and_Closures">
+            <header>Scope and Closures</header>
+            <article>
+                <p>Functions create their own scope. Variables defined inside a function are not accessible outside it.</p>
+                <p>A closure is a function that remembers its outer variables and can access them:</p>
+                <pre><code>function createCounter() {
+    let count = 0;
+    return function() {
+        return ++count;
+    };
+}
+const counter = createCounter();
+counter(); // 1
+counter(); // 2</code></pre>
+                <p>The inner function maintains access to <code>count</code> even after <code>createCounter</code> has finished executing.</p>
+            </article>
+        </section>
+
+        <section class="main-section" id="Higher-Order_Functions">
+            <header>Higher-Order Functions</header>
+            <article>
+                <p>Higher-order functions are functions that operate on other functions by taking them as arguments or returning them.</p>
+                <p>Example of a function that takes another function as an argument:</p>
+                <pre><code>function operate(a, b, operation) {
+    return operation(a, b);
+}
+const result = operate(5, 3, (x, y) =&gt; x * y); // 15</code></pre>
+                <p>Example of a function that returns another function:</p>
+                <pre><code>function multiplier(factor) {
+    return function(x) {
+        return x * factor;
+    };
+}
+const double = multiplier(2);
+double(5); // 10</code></pre>
+            </article>
+        </section>
+
+        <section class="main-section" id="IIFEs">
+            <header>IIFEs</header>
+            <article>
+                <p>Immediately Invoked Function Expressions (IIFEs) are functions that run as soon as they're defined:</p>
+                <pre><code>(function() {
+    console.log("This runs immediately");
+})();</code></pre>
+                <p>Common uses:</p>
+                <ul>
+                    <li>Creating private scope</li>
+                    <li>Avoiding polluting the global namespace</li>
+                    <li>Module pattern implementation</li>
+                </ul>
+                <p>Modern JavaScript often uses block scope (<code>let</code>/<code>const</code>) and modules instead of IIFEs.</p>
+            </article>
+        </section>
+
+        <section class="main-section" id="Reference">
+            <header>Reference</header>
+            <article>
+                <p>All documentation in this page is taken from:</p>
+                <ul>
+                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions" target="_blank">MDN JavaScript Functions Guide</a></li>
+                    <li><a href="https://eloquentjavascript.net/03_functions.html" target="_blank">Eloquent JavaScript - Functions</a></li>
+                    <li><a href="https://javascript.info/function-basics" target="_blank">JavaScript.info - Functions</a></li>
+                </ul>
+            </article>
+        </section></main></body></html>
